@@ -1,8 +1,8 @@
 ﻿
-let SongObject = function(artist, title) {
+let SongObject = function(artist, title, hasVideo) {
   this.title = title;
   this.artist = artist;
-  this.hasVideo = false;
+  this.hasVideo = hasVideo;
   this.hasMp3 = false;
   this.hasCover = false;
   this.hasBackground = false;

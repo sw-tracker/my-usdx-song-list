@@ -9,5 +9,5 @@ var song_list = {
 >>
 
 addSong(iSong) ::= <<
-   <if(!iSong.first)>,<else> <endif>new SongObject("<iSong.artist>", "<iSong.title>")
+   <if(!iSong.first)>,<else> <endif>new SongObject("<iSong.artist>", "<iSong.title>", "<iSong.video>")
 >>

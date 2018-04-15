@@ -6,6 +6,7 @@ public class Song {
   private Integer index;
   private String title;
   private String artist;
+  private boolean hasVideo;
 
   public Song(File iFile) {
     System.out.println(iFile.getAbsolutePath());
@@ -34,6 +35,10 @@ public class Song {
 
   public boolean isFirst() {
     return index == 0;
+  }
+
+  public String getVideo() {
+    return hasVideo ? "+" : "-";
   }
 
   private void setSongNameAndArtistFromFolder(String iName) {
