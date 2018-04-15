@@ -40,16 +40,7 @@ public class SongList {
     File directory = new File(iPath);
     File[] subdirs = directory.listFiles((FileFilter) DirectoryFileFilter.DIRECTORY);
     for (File dir : subdirs) {
-      Song oneSong = new Song("", "");
-      setSongNameAndArtistFromFolder(dir.getName(), oneSong);
-      songList.add(oneSong);
+      songList.add(new Song(dir));
     }
-  }
-
-  private void setSongNameAndArtistFromFolder(String iName, Song iSong) {
-    // folder name is expected to be <artist>-<song title>
-    int dashIndex = iName.indexOf("-", 0);
-    iSong.setArtist(iName.substring(0, dashIndex).trim());
-    iSong.setTitle(iName.substring(dashIndex + 1, iName.length()).trim());
   }
 }

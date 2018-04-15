@@ -1,13 +1,15 @@
 package gen_song_list.objects;
 
+import java.io.File;
+
 public class Song {
   private Integer index;
   private String title;
   private String artist;
 
-  public Song(String iArtist, String iTitle) {
-    this.artist = iArtist;
-    this.title = iTitle;
+  public Song(File iFile) {
+    System.out.println(iFile.getAbsolutePath());
+    setSongNameAndArtistFromFolder(iFile.getName());
   }
 
   public String getTitle() {
@@ -32,5 +34,12 @@ public class Song {
 
   public boolean isFirst() {
     return index == 0;
+  }
+
+  private void setSongNameAndArtistFromFolder(String iName) {
+    // folder name is expected to be <artist>-<song title>
+    int dashIndex = iName.indexOf("-", 0);
+    this.setArtist(iName.substring(0, dashIndex).trim());
+    this.setTitle(iName.substring(dashIndex + 1, iName.length()).trim());
   }
 }
