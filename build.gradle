@@ -1,0 +1,38 @@
+buildscript {
+  repositories {
+      jcenter()
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'application'
+
+sourceSets {
+  main {
+    java {
+      srcDir 'src'
+    }
+    resources {
+      srcDir 'src'
+    }
+  }
+}
+
+repositories {
+  mavenCentral()
+  flatDir {
+    dirs 'lib'
+  }
+}
+
+dependencies {
+  compile "org.antlr:stringtemplate:4+"
+  //compile group: 'org.antlr', name: 'stringtemplate', version: '4.0'
+}
+
+task genSongList (dependsOn: 'classes', type: JavaExec) {
+  description = "Generates a javascript file with all songs as a list"
+  main = 'gen_song_list.GenerateSongList'
+  classpath = sourceSets.main.runtimeClasspath
+}

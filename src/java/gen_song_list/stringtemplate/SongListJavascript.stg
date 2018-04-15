@@ -1,0 +1,13 @@
+SongListJavascript(iDate, iSongList) ::= <<
+// generated file on <iDate>
+
+var song_list = {
+  songs : [<iSongList.songList:{iSong|<\n><addSong(iSong)>}>
+  ]
+};
+
+>>
+
+addSong(iSong) ::= <<
+   <if(!iSong.first)>,<else> <endif>new SongObject("<iSong.artist>", "<iSong.title>")
+>>
