@@ -3,6 +3,11 @@
 This project allows to keep a list of the songs that you have available in your UltraStar Deluxe.
 You can then share a link with your friends and they can browse your songs while other people sing.
 
+## UltraStar Links
+
+- https://ultrastar-es.org/en
+- http://usdb.animux.de/
+
 ## Technology
 
 - Bootstrap v4.0.0 - https://getbootstrap.com
