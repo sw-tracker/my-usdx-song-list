@@ -9,7 +9,6 @@ public class Song {
   private boolean hasVideo;
 
   public Song(File iFile) {
-    System.out.println(iFile.getAbsolutePath());
     setSongNameAndArtistFromFolder(iFile.getName());
   }
 
