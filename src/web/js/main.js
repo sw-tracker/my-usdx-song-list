@@ -13,5 +13,9 @@ $(document).ready(function(){
   // this must be done before the click events are registered
   showTemplate('#navbar_content', navbar_template, {});
 
+  // sort the songs by artist and then by song title
+  song_list.songs.sort(dynamicSortMultiple("artist", "title"));
+
+  // display the songs table
   showTemplate('#main_content', songs_template, song_list);
 });
