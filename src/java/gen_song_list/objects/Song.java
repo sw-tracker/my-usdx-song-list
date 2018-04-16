@@ -42,8 +42,19 @@ public class Song {
 
   private void setSongNameAndArtistFromFolder(String iName) {
     // folder name is expected to be <artist>-<song title>
-    int dashIndex = iName.indexOf("-", 0);
-    this.setArtist(iName.substring(0, dashIndex).trim());
-    this.setTitle(iName.substring(dashIndex + 1, iName.length()).trim());
+    int dashIndex = iName.indexOf(" - ", 0);
+    try {
+      this.setArtist(convertSpecialChars(iName.substring(0, dashIndex).trim()));
+      this.setTitle(convertSpecialChars(iName.substring(dashIndex + 3, iName.length()).trim()));
+    } catch (Exception e) {
+      System.out.println("Not able to parse folder name '<artist> - <song title>': " + iName);
+      throw e;
+    }
+  }
+
+  private String convertSpecialChars(String iWord) {
+    String word = iWord;
+    word = word.replace("~", "/"); // example AC~DC to AC/DC
+    return word.trim();
   }
 }
