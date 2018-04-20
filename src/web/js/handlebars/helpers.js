@@ -36,6 +36,14 @@ Handlebars.registerHelper("add", function(value1, value2, value3, options) {
   return value1 + value2 + value3;
 });
 
+// this function returns a date in the past according to the number of days parameter
+// usage: {{getDate <number of days>}}
+Handlebars.registerHelper("getDate", function(noDays, options) {
+  var now = new Date();
+  now.setDate(now.getDate() - noDays);
+  return now;
+});
+
 /*
 This helper provides comparison functionality in templates.
 usage:

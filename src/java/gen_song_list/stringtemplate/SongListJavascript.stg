@@ -1,6 +1,7 @@
 SongListJavascript(iDate, iSongList) ::= <<
 // generated file on <iDate>
 
+// new SongObject("artist", "song title", "createdOn", hasVideo, hasMp3)
 var song_list = {
   songs : [<iSongList.songList:{iSong|<\n><addSong(iSong)>}>
   ]
@@ -9,5 +10,5 @@ var song_list = {
 >>
 
 addSong(iSong) ::= <<
-   <if(!iSong.first)>,<else> <endif>new SongObject("<iSong.artist>", "<iSong.title>", "<iSong.video>")
+   <if(!iSong.first)>,<else> <endif>new SongObject("<iSong.artist>", "<iSong.title>", "<iSong.createdOn>", <iSong.video>, <iSong.mp3>)
 >>

@@ -3,6 +3,7 @@ package gen_song_list.objects;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class SongList {
     songList = new ArrayList<>();
 
     for (String dir : SONGS_FOLDERS) {
-      loadSongsFronFolder(dir);
+      loadSongsFromFolder(dir);
     }
 
     updateIndexes();
@@ -36,7 +37,7 @@ public class SongList {
     }
   }
 
-  private void loadSongsFronFolder(String iPath) {
+  private void loadSongsFromFolder(String iPath) {
     File directory = new File(iPath);
     File[] subdirs = directory.listFiles((FileFilter) DirectoryFileFilter.DIRECTORY);
     for (File dir : subdirs) {
