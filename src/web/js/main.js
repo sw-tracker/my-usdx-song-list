@@ -18,4 +18,10 @@ $(document).ready(function(){
 
   // display the songs table
   showTemplate('#main_content', songs_template, song_list);
+
+  $('#songs_table').searchable({
+    striped: true,
+    searchType: 'default',
+    clearOnLoad: true
+  });
 });
