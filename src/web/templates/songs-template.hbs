@@ -6,45 +6,47 @@ usage: > songs-template
   </br>
   <div class="row">
     <div class="col-xs-12 col-md-12 col-lg-12">
-      <table class="table table-hover" id="songs_table">
-        <col width="40%">
-        <col width="40%">
-        <col width="1%">
-        <col width="1%">
-        <col width="1%">
-        <thead class="thead-light">
-        <tr>
-          <th scope="col">Artist</th>
-          <th scope="col">Song</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        {{#each songs}}
-        <tr>
-          <td>{{artist}}</td>
-          <td>{{title}}</td>
-          <td>
-          {{#if hasVideo}}
-            <span class="fa fa-video"></span>
-          {{/if}}
-          </td>
-          <td>
-          {{#if hasMp3}}
-            <span class="fa fa-music"></span>
-          {{/if}}
-          </td>
-          <td>
-          {{#compare createdOn ">" (getDate 60)}}
-            <span class="fa fa-star"></span>
-          {{/compare}}
-          </td>
-        </tr>
-        {{/each}}
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-hover" id="songs_table">
+          <col width="40%">
+          <col width="40%">
+          <col width="1%">
+          <col width="1%">
+          <col width="1%">
+          <thead class="thead-light">
+          <tr>
+            <th scope="col">Artist</th>
+            <th scope="col">Song</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+          </thead>
+          <tbody>
+          {{#each songs}}
+          <tr>
+            <td>{{artist}}</td>
+            <td>{{title}}</td>
+            <td>
+            {{#if hasVideo}}
+              <span class="fa fa-video"></span>
+            {{/if}}
+            </td>
+            <td>
+            {{#if hasMp3}}
+              <span class="fa fa-music"></span>
+            {{/if}}
+            </td>
+            <td>
+            {{#compare createdOn ">" (getDate 60)}}
+              <span class="fa fa-star"></span>
+            {{/compare}}
+            </td>
+          </tr>
+          {{/each}}
+          </tbody>
+        </table>
+      </div>
     </div>
   </div> <!-- / div row -->
 </div>
