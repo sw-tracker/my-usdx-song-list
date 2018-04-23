@@ -39,7 +39,11 @@ function loadTemplates() {
   // I should improve this, loop through all files in the templates folder and load them
   navbar_template = Handlebars.getTemplate('navbar-template');
   songs_template = Handlebars.getTemplate('songs-template');
+
+  // register templates that I will use from other templates
+  Handlebars.registerTemplateAsPartial('search-partial', 'search-template');
 }
 
+// to be able to use special date formatting templates
 HandlebarsIntl.registerWith(Handlebars);
 loadTemplates();
