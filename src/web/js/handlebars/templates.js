@@ -42,6 +42,7 @@ function loadTemplates() {
 
   // register templates that I will use from other templates
   Handlebars.registerTemplateAsPartial('search-partial', 'search-template');
+  Handlebars.registerTemplateAsPartial('dropdown-partial', 'dropdown-template');
 }
 
 // to be able to use special date formatting templates

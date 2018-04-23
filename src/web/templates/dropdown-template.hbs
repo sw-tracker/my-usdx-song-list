@@ -1,0 +1,15 @@
+﻿<!-- usage: dropdown option_text="text" dropdown_id="id" -->
+<div class="col-xs-4 col-md-4 col-lg-4 my-1">
+  <div class="btn-group w-100">
+    <button class="btn btn-outline-light text-dark w-75" type="button">{{option_text}}</button>
+    <button type="button" class="btn dropdown-toggle dropdown-toggle-split w-75" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span id="selected_option_text_{{dropdown_id}}">Any</span>
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item js-{{dropdown_id}}" href="#" data-id="yes">Yes</a>
+      <a class="dropdown-item js-{{dropdown_id}}" href="#" data-id="no">No</a>
+      <a class="dropdown-item js-{{dropdown_id}}" href="#" data-id="any">Any</a>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,9 @@
+﻿.btn-responsive {
+  white-space: normal !important;
+  word-wrap: break-word;
+}
+
+.fa-caret-down {
+  float: right;
+  vertical-align: middle
+}
