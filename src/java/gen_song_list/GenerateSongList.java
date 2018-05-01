@@ -1,4 +1,4 @@
-package gen_song_list;
+package java.gen_song_list;
 
 import gen_song_list.objects.SongList;
 import gen_song_list.stringtemplate.Generator;

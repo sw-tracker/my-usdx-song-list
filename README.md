@@ -3,6 +3,17 @@
 This project allows to keep a list of the songs that you have available in your UltraStar Deluxe.
 You can then share a link with your friends and they can browse your songs while other people sing.
 
+## Update/Generate Song List
+
+This website works by generating a JavaScript file that contains an array of songs.
+These songs are found on your computer. This file is located in `my-usdx-song-list\src\web\resources\song_data.js`.
+
+To generate this file follow these steps:
+
+1. Modify the folder paths in GenerateSongList to point to where you have your UltraStar songs.
+2. Open a command line prompt and go to the parent folder of this project `cd my-usdx-song-list`.
+3. Now run gradle to generate/update the song list file: `gradlew clean genSongList`.
+
 ## Formatting
 
 For this software to parse your folders and files correctly, the following formatting/naming conventions must be met:
