@@ -12,7 +12,7 @@ import java.util.Date;
 public class Generator {
 
   public static String generateSongListJs(SongList iSongList) {
-    STGroup group = new STGroupFile("java/gen_song_list/stringtemplate/SongListJavascript.stg", '<', '>');
+    STGroup group = new STGroupFile("gen_song_list/stringtemplate/SongListJavascript.stg", '<', '>');
 
     ST template = group.getInstanceOf("SongListJavascript");
     group.registerRenderer(String.class, new StringRenderer());

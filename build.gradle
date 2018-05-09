@@ -29,7 +29,6 @@ repositories {
 dependencies {
   compile "commons-io:commons-io:2+"
   compile "org.antlr:stringtemplate:4+"
-  //compile group: 'org.antlr', name: 'stringtemplate', version: '4.0'
 }
 
 task genSongList (dependsOn: 'classes', type: JavaExec) {

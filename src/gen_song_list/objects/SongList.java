@@ -1,13 +1,11 @@
 package gen_song_list.objects;
 
+import gen_song_list.GenerateSongList;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
-
-import static gen_song_list.GenerateSongList.SONGS_FOLDERS;
 
 public class SongList {
 
@@ -22,7 +20,7 @@ public class SongList {
   public void loadSongs() {
     songList = new ArrayList<>();
 
-    for (String dir : SONGS_FOLDERS) {
+    for (String dir : GenerateSongList.SONGS_FOLDERS) {
       loadSongsFromFolder(dir);
     }
 
