@@ -7,3 +7,19 @@
   float: right;
   vertical-align: middle
 }
+
+.table {
+  table-layout: fixed;
+}
+
+.col-large {
+  width: 200px;
+}
+.col-small {
+  width: 20px;
+}
+@media (max-width: 700px) {
+  .col-small {
+    width: 40px;
+  }
+}

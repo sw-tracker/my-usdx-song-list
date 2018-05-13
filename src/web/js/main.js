@@ -7,6 +7,17 @@ function showTemplate(destination, template, data){
   $(destination).html(html);
 }
 
+function handleSearchClearButton(active) {
+  if (active) {
+    $('#searchClearIcon').removeClass('fa-search');
+    $('#searchClearIcon').addClass('fa-times');
+
+  } else {
+    $('#searchClearIcon').removeClass('fa-times');
+    $('#searchClearIcon').addClass('fa-search');
+  }
+}
+
 // HTML has been loaded, lets do initial setup
 $(document).ready(function(){
   // display the navbar
@@ -19,9 +30,27 @@ $(document).ready(function(){
   // display the songs table
   showTemplate('#main_content', songs_template, song_list);
 
+  // use the searchable plugin
   $('#songs_table').searchable({
     striped: true,
     searchType: 'default',
-    clearOnLoad: true
+    clearOnLoad: true,
+    searchField: '#searchInputBox',
+    onSearchActive: function( elem, term ) {
+      handleSearchClearButton(true);
+    },
+    onSearchEmpty: function( elem, term ) {
+      handleSearchClearButton(false);
+    }
+  });
+
+  // the searchable plugin doesnt notice when we set the value via software
+  // here we force it to update the search after we clear the search input
+  $('#searchClearButton').click(function () {
+    if ($('#searchClearIcon').hasClass('fa-times')) {
+      $('#searchInputBox').val('');
+      handleSearchClearButton(false);
+      $("#searchInputBox").trigger('change');
+    }
   });
 });
