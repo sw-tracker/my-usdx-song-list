@@ -1,6 +1,6 @@
 ﻿var new_song_days_old = 60;
 
-let SongObject = function(artist, title, createdOn, hasVideo, hasMp3) {
+var SongObject = function(artist, title, createdOn, hasVideo, hasMp3) {
   this.title = title;
   this.artist = artist;
   this.createdOn = new Date(createdOn);

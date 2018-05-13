@@ -4,3 +4,4 @@
 build/
 out/
 src/web/node_modules/
+src/web/dist/

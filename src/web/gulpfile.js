@@ -8,7 +8,8 @@ var gulp = require('gulp'),
   rev = require('gulp-rev'),
   cleanCss = require('gulp-clean-css'),
   flatmap = require('gulp-flatmap'),
-  htmlmin = require('gulp-htmlmin');
+  htmlmin = require('gulp-htmlmin'),
+  gutil = require('gulp-util');
 
 gulp.task('browser-sync', function () {
   var files = [
@@ -40,6 +41,11 @@ gulp.task('copyfonts', function() {
     .pipe(gulp.dest('./dist/webfonts'));
 });
 
+gulp.task('copytemplates', function() {
+  gulp.src('./templates/*.hbs')
+    .pipe(gulp.dest('./dist/templates'));
+});
+
 gulp.task('usemin', function() {
   return gulp.src('./*.html')
     // flatmap allows to handle multiple files by setting up a parallel pipe for each file
@@ -53,12 +59,14 @@ gulp.task('usemin', function() {
           inlinejs: [ uglify() ],
           inlinecss: [ cleanCss(), 'concat' ]
         }))
+        .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
     }))
+    .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
     .pipe(gulp.dest('dist/'));
 });
 
 // with gulp tasks are executed in parallel, therefore we want clean
 // to be done first and then start the others
 gulp.task('build',['clean'], function() {
-  gulp.start('copyfonts','usemin');
+  gulp.start('copyfonts', 'copytemplates', 'usemin');
 });

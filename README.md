@@ -70,3 +70,9 @@ cd src/web/
 gulp build
 ```
 
+To run the server and view the website run:
+
+```
+cd src/web/
+gulp
+```
