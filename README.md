@@ -79,6 +79,10 @@ gulp
 
 ### Handlebars
 
+- To have a template file compiled as a template, the file must be named `*template*.hbs`.
+- To have a template file compiled as a partial, the file must be named `*partial*.hbs`.
+- To reuse a template as a partial, the file name must have both words in it.
+
 ```
 cd src/web/
 npm install --save handlebars@^4.0.0

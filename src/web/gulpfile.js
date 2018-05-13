@@ -20,14 +20,14 @@ var handlebars = require('gulp-handlebars'),
 
 gulp.task('partials-to-js', function() {
   // Assume all partials start with an underscore
-  gulp.src(['./templates/_*.hbs'])
+  gulp.src(['./templates/*partial*.hbs'])
     .pipe(handlebars())
     .pipe(wrap('Handlebars.registerPartial(<%= processPartialName(file.relative) %>, Handlebars.template(<%= contents %>));', {}, {
       imports: {
         processPartialName: function(fileName) {
-          // Strip the extension and the underscore
+          // Strip the extension
           // Escape the output with JSON.stringify
-          return JSON.stringify(path.basename(fileName, '.js').substr(1));
+          return JSON.stringify(path.basename(fileName, '.js'));
         }
       }
     }))
@@ -37,7 +37,7 @@ gulp.task('partials-to-js', function() {
 });
 
 gulp.task('templates-to-js', function(){
-  gulp.src('./templates/*.hbs')
+  gulp.src('./templates/*template*.hbs')
     .pipe(handlebars())
     .pipe(wrap('Handlebars.template(<%= contents %>)'))
     .pipe(declare({
@@ -59,8 +59,7 @@ gulp.task('browser-sync', function () {
     './*.html',
     './css/*.css',
     './resources/*.js',
-    './js/*.js',
-    './js/handlebars/*.js',
+    './js/**/**.js', // watch folders and sub-folders
     '.templates/*.hbs',
     '.dist/*.html'
   ];

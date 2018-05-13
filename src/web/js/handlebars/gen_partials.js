@@ -1,4 +1,4 @@
-Handlebars.registerPartial("dropdown-template", Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+Handlebars.registerPartial("dropdown-partial", Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=helpers.helperMissing, alias2="function", alias3=container.escapeExpression;
 
   return "<!-- usage: dropdown option_text=\"text\" dropdown_id=\"id\" -->\r\n<div class=\"col-12 col-md-4 col-lg-4 my-1\">\r\n  <div class=\"btn-group w-100 d-flex justify-content-center\">\r\n    <div class=\"row w-100 d-flex justify-content-center\">\r\n\r\n      <div class=\"col-6 col-md-4 col-lg-4 my-1 pl-0 pr-0\">\r\n        <button class=\"btn btn-outline-light btn-block text-dark\" type=\"button\">"
