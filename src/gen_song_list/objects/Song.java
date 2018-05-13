@@ -87,7 +87,7 @@ public class Song {
     File[] listOfFiles = file.listFiles(new FilenameFilter() {
       @Override
       public boolean accept(File dir, String name) {
-        return name.endsWith(".avi") || name.endsWith(".mp4");
+        return name.toLowerCase().endsWith(".avi") || name.toLowerCase().endsWith(".mp4");
       }
     });
 
@@ -101,7 +101,7 @@ public class Song {
     File[] listOfFiles = file.listFiles(new FilenameFilter() {
       @Override
       public boolean accept(File dir, String name) {
-        return name.endsWith(".mp3");
+        return name.toLowerCase().endsWith(".mp3");
       }
     });
 
