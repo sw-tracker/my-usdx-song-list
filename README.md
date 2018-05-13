@@ -43,3 +43,30 @@ Example: `A-ha - Take On Me`.
 - Popper.js v1.14.1 (bootstrap drop-downs need this) - https://popper.js.org/
 - jQuery Searchable Plugin v1.1.1 - https://github.com/stidges/jquery-searchable
 
+## For Developers
+
+This command should install all you need:
+
+```
+cd src/web/
+npm install
+```
+
+This is what I installed when developing this project:
+
+```
+cd src/web/
+npm install -g gulp-cli@2.0.1
+npm install gulp@3.9.1 --save-dev
+npm install browser-sync@2.23.6 --save-dev
+npm install del@3.0.0 --save-dev
+npm install gulp-uglify@3.0.0 gulp-usemin@0.3.29 gulp-rev@8.1.1 gulp-clean-css@3.9.3 gulp-flatmap@1.0.2 gulp-htmlmin@4.0.0 --save-dev
+```
+
+To build the project run:
+
+```
+cd src/web/
+gulp build
+```
+
