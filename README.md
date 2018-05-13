@@ -80,6 +80,7 @@ gulp
 ### Handlebars
 
 ```
+cd src/web/
 npm install --save handlebars@^4.0.0
 npm install --save-dev gulp-handlebars gulp-wrap gulp-declare gulp-concat
 ```
