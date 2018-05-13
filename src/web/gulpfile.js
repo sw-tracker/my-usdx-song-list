@@ -11,13 +11,58 @@ var gulp = require('gulp'),
   htmlmin = require('gulp-htmlmin'),
   gutil = require('gulp-util');
 
+// for handlebars
+var handlebars = require('gulp-handlebars'),
+    wrap = require('gulp-wrap'),
+    declare = require('gulp-declare'),
+    concat = require('gulp-concat'),
+    path = require('path');
+
+gulp.task('partials-to-js', function() {
+  // Assume all partials start with an underscore
+  gulp.src(['./templates/_*.hbs'])
+    .pipe(handlebars())
+    .pipe(wrap('Handlebars.registerPartial(<%= processPartialName(file.relative) %>, Handlebars.template(<%= contents %>));', {}, {
+      imports: {
+        processPartialName: function(fileName) {
+          // Strip the extension and the underscore
+          // Escape the output with JSON.stringify
+          return JSON.stringify(path.basename(fileName, '.js').substr(1));
+        }
+      }
+    }))
+    .pipe(concat('gen_partials.js')) // output filename
+    .pipe(gulp.dest('./js/handlebars/')) // output folder path
+  ;
+});
+
+gulp.task('templates-to-js', function(){
+  gulp.src('./templates/*.hbs')
+    .pipe(handlebars())
+    .pipe(wrap('Handlebars.template(<%= contents %>)'))
+    .pipe(declare({
+      namespace: 'usdxSongList.templates',
+      noRedeclare: true, // Avoid duplicate declarations
+    }))
+    .pipe(concat('gen_templates.js')) // output filename
+    .pipe(gulp.dest('./js/handlebars/')) // output folder path
+  ;
+});
+
+// taks to watch the template files and when they are modified automatically generate the js
+gulp.task('hbs:watch', function () {
+  gulp.watch('./templates/*.hbs', ['templates-to-js', 'partials-to-js']);
+});
+
 gulp.task('browser-sync', function () {
   var files = [
     './*.html',
     './css/*.css',
     './resources/*.js',
     './js/*.js',
-    '.templates/*.hbs'
+    './js/handlebars/*.js',
+    '.templates/*.hbs',
+    '.dist/*.html'
   ];
 
   browserSync.init(files, {
@@ -29,6 +74,7 @@ gulp.task('browser-sync', function () {
 
 // Default task
 gulp.task('default', ['browser-sync'], function() {
+  gulp.start('hbs:watch');
 });
 
 // Clean
@@ -41,11 +87,7 @@ gulp.task('copyfonts', function() {
     .pipe(gulp.dest('./dist/webfonts'));
 });
 
-gulp.task('copytemplates', function() {
-  gulp.src('./templates/*.hbs')
-    .pipe(gulp.dest('./dist/templates'));
-});
-
+// the files to minimize and concat are surrounded by build tags in the html index file
 gulp.task('usemin', function() {
   return gulp.src('./*.html')
     // flatmap allows to handle multiple files by setting up a parallel pipe for each file
@@ -68,5 +110,5 @@ gulp.task('usemin', function() {
 // with gulp tasks are executed in parallel, therefore we want clean
 // to be done first and then start the others
 gulp.task('build',['clean'], function() {
-  gulp.start('copyfonts', 'copytemplates', 'usemin');
+  gulp.start('copyfonts', 'templates-to-js', 'partials-to-js', 'usemin');
 });

@@ -10,11 +10,16 @@
     "gulp-htmlmin": "^4.0.0",
     "gulp-rev": "^8.1.1",
     "gulp-uglify": "^3.0.0",
-    "gulp-usemin": "^0.3.29"
+    "gulp-usemin": "^0.3.29",
+    "handlebars": "^4.0.0"
   },
   "devDependencies": {
     "browser-sync": "^2.23.6",
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-declare": "^0.3.0",
+    "gulp-handlebars": "^5.0.2",
+    "gulp-wrap": "^0.13.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

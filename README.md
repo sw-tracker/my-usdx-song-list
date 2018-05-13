@@ -76,3 +76,10 @@ To run the server and view the website run:
 cd src/web/
 gulp
 ```
+
+### Handlebars
+
+```
+npm install --save handlebars@^4.0.0
+npm install --save-dev gulp-handlebars gulp-wrap gulp-declare gulp-concat
+```
