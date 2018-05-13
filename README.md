@@ -36,7 +36,7 @@ Example: `A-ha - Take On Me`.
 
 - Bootstrap v4.0.0 - https://getbootstrap.com
 - Bootstrap Themes from https://bootswatch.com/
-- Handlebars v3.0.3 - http://handlebarsjs.com/
+- Handlebars v4.0.0 - http://handlebarsjs.com/
 - Handlebars-intl v1.1.2 - https://formatjs.io/handlebars/
 - FontAwesome v5.0.8 - https://fontawesome.com
 - jQuery v3.3.1 - https://jquery.com/
