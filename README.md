@@ -41,4 +41,5 @@ Example: `A-ha - Take On Me`.
 - FontAwesome v5.0.8 - https://fontawesome.com
 - jQuery v3.3.1 - https://jquery.com/
 - Popper.js v1.14.1 (bootstrap drop-downs need this) - https://popper.js.org/
-- jQuery Searchable Plugin v1.1.0 - https://github.com/stidges/jquery-searchable
+- jQuery Searchable Plugin v1.1.1 - https://github.com/stidges/jquery-searchable
+

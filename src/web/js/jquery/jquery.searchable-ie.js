@@ -104,20 +104,23 @@
             afterSearchCallback = isFunction( this.settings.onAfterSearch );
         },
 
-        // ensure that umlauts and vowals with accents are found when searching for normal vowals
-      removeDiacritics : function (text) {
+        removeDiacritics : function (text) {
           if (this.settings.ignoreDiacritics) {
             text = text
-              .replace(/[ÀÁÂÃÄÅ]/g, "A")
-              .replace(/[àáâãäå]/g, "a")
-              .replace(/[ÈÉÊË]/g, "E")
-              .replace(/[èéêë]/g, "e")
-              .replace(/[Í]/g, "I")
-              .replace(/[í]/g, "i")
-              .replace(/[ÓÖ]/g, "O")
-              .replace(/[óö]/g, "o")
-              .replace(/[ÚÜ]/g, "U")
-              .replace(/[úü]/g, "u");
+              .replace(/[ÀÁÂÃÄÅ]/g, 'A')
+              .replace(/[àáâãäå]/g, 'a')
+              .replace(/[ÈÉÊË]/g, 'E')
+              .replace(/[èéêë]/g, 'e')
+              .replace(/[Í]/g, 'I')
+              .replace(/[í]/g, 'i')
+              .replace(/[ÓÖ]/g, 'O')
+              .replace(/[óö]/g, 'o')
+              .replace(/[ÚÜ]/g, 'U')
+              .replace(/[úü]/g, 'u')
+              .replace(/[Ñ]/g, 'N')
+              .replace(/[ñ]/g, 'n')
+              .replace(/[ß]/g, 's')
+            ;
           }
           return text;
         },
@@ -168,7 +171,7 @@
         },
 
         search: function( term ) {
-            var matcher, elemCount, children, childCount, hide, $elem, i, x;
+            var matcher, elemCount, children, childCount, hide, $elem, i, x, contentText;
 
             if ( $.trim( term ).length === 0 ) {
                 this.$searchElems.css( 'display', '' );
@@ -194,7 +197,7 @@
                 hide       = true;
 
                 for ( x = 0; x < childCount; x++ ) {
-                    var contentText = $( children[ x ] ).text();
+                    contentText = $( children[ x ] ).text();
                     contentText = this.removeDiacritics(contentText);
                     if ( matcher( contentText ) ) {
                         hide = false;
