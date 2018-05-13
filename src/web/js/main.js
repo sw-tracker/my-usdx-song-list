@@ -81,9 +81,10 @@ function registerSearchable(doChange) {
     onSearchEmpty: function( elem, term ) {
       handleSearchClearButton(false);
     },
+    ignoreDiacritics: true,
     // needed because the onchange event will be called before searchable updates the table
     // this will be called afterwards so I can count the number of visible rows
-    onAfterSearch : updateSongCount
+    onAfterSearch: updateSongCount
   });
 
   if (doChange) {
