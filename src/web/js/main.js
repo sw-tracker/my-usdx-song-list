@@ -96,6 +96,7 @@ function registerSearchable(doChange) {
 function cloneSongList() {
   var temp_song_list = {
     shown_songs : 0,
+    total_songs : song_list.songs.length,
     songs : []
   };
   var doAdd = false;
