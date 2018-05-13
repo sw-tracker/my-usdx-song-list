@@ -1,36 +1,38 @@
 ﻿<!-- The ID of the search input can be used with the searchable js
 -->
-<div class="card">
-  <div class="card-header">
+<div class="container">
+  <div class="card">
+    <div class="card-header">
 
-    <div class="row">
-      <!-- search input -->
-      <div class="col-10 col-md-11 col-lg-8 pr-0">
-        <div class="input-group h-100">
-          <input id="searchInputBox" value="" class="form-control" type="search" placeholder="Search..." aria-label="Search...">
+      <div class="row">
+        <!-- search input -->
+        <div class="col-10 col-md-11 col-lg-8 pr-0">
+          <div class="input-group h-100">
+            <input id="searchInputBox" value="" class="form-control" type="search" placeholder="Search..." aria-label="Search...">
+          </div>
+        </div>
+        <div class="col-2 col-md-1 col-lg-1 pl-0">
+          <div class="input-group-append w-100 h-100">
+            <a role="button" class="btn-lg btn-block p-0" id="searchClearButton">
+              <span class="input-group-text h-100 d-flex justify-content-center align-self-center"><i id="searchClearIcon" class="fa fa-search" aria-hidden="true"></i></span>
+            </a>
+          </div>
+        </div>
+        <!-- button to expand advanced search -->
+        <div class="col-12 col-md-12 col-lg-3 pb-0 mb-0 mt-2">
+          <p class="card-title m-0"><a data-toggle="collapse" href="#advanced_search">Advanced Search</a></p>
         </div>
       </div>
-      <div class="col-2 col-md-1 col-lg-1 pl-0">
-        <div class="input-group-append w-100 h-100">
-          <a role="button" class="btn-lg btn-block p-0" id="searchClearButton">
-            <span class="input-group-text h-100 d-flex justify-content-center align-self-center"><i id="searchClearIcon" class="fa fa-search" aria-hidden="true"></i></span>
-          </a>
-        </div>
-      </div>
-      <!-- button to expand advanced search -->
-      <div class="col-12 col-md-12 col-lg-3 pb-0 mb-0 mt-2">
-        <p class="card-title m-0"><a data-toggle="collapse" href="#advanced_search">Advanced Search</a></p>
-      </div>
+
     </div>
 
-  </div>
-
-  <!-- card content: advanced search options -->
-  <div id="advanced_search" class="card-body collapse">
-    <div class="row">
-      {{> dropdown-partial option_text="Video" dropdown_id="video"}}
-      {{> dropdown-partial option_text="MP3" dropdown_id="mp3"}}
-      {{> dropdown-partial option_text="New" dropdown_id="new"}}
+    <!-- card content: advanced search options -->
+    <div id="advanced_search" class="card-body collapse">
+      <div class="row">
+        {{> dropdown-partial option_text="Video" dropdown_id="video"}}
+        {{> dropdown-partial option_text="MP3" dropdown_id="mp3"}}
+        {{> dropdown-partial option_text="New" dropdown_id="new"}}
+      </div>
     </div>
   </div>
 </div>

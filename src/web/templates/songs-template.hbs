@@ -2,8 +2,6 @@
 usage: > songs-template
 -->
 <div class="container">
-  {{> search-partial}}
-  </br>
   <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
       <div class="table-responsive">
@@ -38,9 +36,9 @@ usage: > songs-template
             {{/if}}
             </td>
             <td>
-            {{#compare createdOn ">" (getDate 60)}}
+            {{#if isNew}}
               <span class="fa fa-star"></span>
-            {{/compare}}
+            {{/if}}
             </td>
           </tr>
           {{/each}}

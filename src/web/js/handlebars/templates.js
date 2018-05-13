@@ -3,7 +3,7 @@
 // variables for all of the templates so we only have to compile
 // them once on page load and can then use the same compiled
 // templates many times
-var navbar_template, songs_template;
+var navbar_template, search_template, songs_template;
 
 // this function caches the compiled templates so it isnt an issue to call it multiple times
 Handlebars.getTemplate = function(name) {
@@ -38,10 +38,10 @@ function loadTemplates() {
   // load templates
   // I should improve this, loop through all files in the templates folder and load them
   navbar_template = Handlebars.getTemplate('navbar-template');
+  search_template = Handlebars.getTemplate('search-template');
   songs_template = Handlebars.getTemplate('songs-template');
 
   // register templates that I will use from other templates
-  Handlebars.registerTemplateAsPartial('search-partial', 'search-template');
   Handlebars.registerTemplateAsPartial('dropdown-partial', 'dropdown-template');
 }
 
