@@ -1,4 +1,6 @@
-﻿// a helper function that instantiates a template
+﻿var video_search, mp3_search, new_search;
+
+// a helper function that instantiates a template
 // and displays the results in the content div
 function showTemplate(destination, template, data){
   // render the data into the template
@@ -18,6 +20,14 @@ function handleSearchClearButton(active) {
   }
 }
 
+function cloneSongList() {
+  var temp_song_list = {songs : []};
+  for (var one_song in song_list.songs) {
+    temp_song_list.songs.push(song_list.songs[one_song].clone());
+  }
+  return temp_song_list;
+}
+
 // HTML has been loaded, lets do initial setup
 $(document).ready(function(){
   // display the navbar
@@ -27,8 +37,11 @@ $(document).ready(function(){
   // sort the songs by artist and then by song title
   song_list.songs.sort(dynamicSortMultiple("artist", "title"));
 
+  // this is the song list we use for displaying
+  var disp_song_list = cloneSongList();
+
   // display the songs table
-  showTemplate('#main_content', songs_template, song_list);
+  showTemplate('#main_content', songs_template, disp_song_list);
 
   // use the searchable plugin
   $('#songs_table').searchable({
@@ -52,5 +65,23 @@ $(document).ready(function(){
       handleSearchClearButton(false);
       $("#searchInputBox").trigger('change');
     }
+  });
+
+  // handle search drop-down boxes
+  $('.js-video').click(function () {
+    video_search = $(this).attr("data-id");
+    $('#selected_option_text_video').html(video_search);
+  });
+
+  // handle search drop-down boxes
+  $('.js-mp3').click(function () {
+    mp3_search = $(this).attr("data-id");
+    $('#selected_option_text_mp3').html(mp3_search);
+  });
+
+  // handle search drop-down boxes
+  $('.js-new').click(function () {
+    new_search = $(this).attr("data-id");
+    $('#selected_option_text_new').html(new_search);
   });
 });

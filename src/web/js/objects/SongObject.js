@@ -8,3 +8,7 @@ let SongObject = function(artist, title, createdOn, hasVideo, hasMp3) {
   this.hasCover = false;
   this.hasBackground = false;
 };
+
+SongObject.prototype.clone = function() {
+  return new SongObject(this.artist, this.title, this.createdOn, this.hasVideo, this.hasMp3);
+};
