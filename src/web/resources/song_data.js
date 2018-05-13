@@ -1,4 +1,4 @@
-// generated file on Wed May 09 19:39:16 CEST 2018
+// generated file on Sun May 13 10:45:47 CEST 2018
 
 // new SongObject("artist", "song title", "createdOn", hasVideo, hasMp3)
 var song_list = {
@@ -611,6 +611,8 @@ var song_list = {
    ,new SongObject("Carlos Vives", "Matilde lina", "2018-04-15", false, true)
    ,new SongObject("Carlos Vives", "Pa' Mayté", "2018-04-15", true, true)
    ,new SongObject("Carlos Vives", "Volví a nacer", "2018-04-15", true, true)
+   ,new SongObject("Cat Stevens", "Father and Son", "2018-05-13", true, true)
+   ,new SongObject("Cat Stevens", "Wild World", "2018-05-13", true, true)
    ,new SongObject("Celia Cruz", "La vida es un carnaval", "2018-04-15", true, true)
    ,new SongObject("Cheb Khaled", "Aïcha", "2015-08-26", true, false)
    ,new SongObject("Cher", "Believe", "2018-04-19", true, true)
@@ -753,6 +755,7 @@ var song_list = {
    ,new SongObject("Helene Fischer", "Atemlos durch die Nacht", "2015-05-18", true, false)
    ,new SongObject("Heroes Del Silencio", "Entre Dos Tierras", "2016-10-08", false, true)
    ,new SongObject("Hole", "Celebrity Skin", "2015-06-25", true, true)
+   ,new SongObject("Hozier", "Take me to church", "2018-05-13", true, true)
    ,new SongObject("Héroes del Silencio", "Avalancha", "2018-04-15", true, true)
    ,new SongObject("Héroes del Silencio", "La chispa adecuada", "2018-04-15", true, true)
    ,new SongObject("Héroes del Silencio", "Maldito duende", "2018-04-15", true, true)
@@ -1024,6 +1027,10 @@ var song_list = {
    ,new SongObject("Sia", "Chandelier", "2015-06-25", true, false)
    ,new SongObject("Sia", "Cheap Thrills", "2018-04-19", true, true)
    ,new SongObject("Silbermond", "Irgendwas bleibt", "2015-08-14", true, false)
+   ,new SongObject("Silverchair", "Anthem For The Year 2000", "2018-05-13", true, true)
+   ,new SongObject("Silverchair", "Freak", "2018-05-13", true, true)
+   ,new SongObject("Silverchair", "The Greatest View", "2018-05-13", true, true)
+   ,new SongObject("Silverchair", "Tomorrow", "2018-05-13", true, true)
    ,new SongObject("Sir Mix-a-Lot", "Baby Got Back", "2015-06-25", true, true)
    ,new SongObject("Smashing Pumpkins", "Bullet with Butterfly Wings", "2015-06-25", true, true)
    ,new SongObject("Smashing Pumpkins", "Cherub Rock", "2015-06-25", true, true)

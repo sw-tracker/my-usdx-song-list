@@ -11,6 +11,13 @@ function showTemplate(destination, template, data){
   $(destination).html(html);
 }
 
+function updateSongCount() {
+  disp_song_list.shown_songs = $('tr').filter(function() {
+    return $(this).css('display') !== 'none';
+  }).length - 1;
+  $('#shown_songs').html(disp_song_list.shown_songs);
+}
+
 function handleSearchClearButton(active) {
   if (active) {
     $('#searchClearIcon').removeClass('fa-search');
@@ -73,7 +80,10 @@ function registerSearchable(doChange) {
     },
     onSearchEmpty: function( elem, term ) {
       handleSearchClearButton(false);
-    }
+    },
+    // needed because the onchange event will be called before searchable updates the table
+    // this will be called afterwards so I can count the number of visible rows
+    onAfterSearch : updateSongCount
   });
 
   if (doChange) {
@@ -83,7 +93,10 @@ function registerSearchable(doChange) {
 }
 
 function cloneSongList() {
-  var temp_song_list = {songs : []};
+  var temp_song_list = {
+    shown_songs : 0,
+    songs : []
+  };
   var doAdd = false;
   for (var one_song in song_list.songs) {
     var this_song = song_list.songs[one_song];

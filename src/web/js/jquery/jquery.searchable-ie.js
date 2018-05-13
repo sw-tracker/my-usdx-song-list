@@ -22,12 +22,14 @@
             onSearchEmpty: false,
             onSearchFocus: false,
             onSearchBlur: false,
-            clearOnLoad: false
+            clearOnLoad: false,
+            onAfterSearch: false
         },
         searchActiveCallback = false,
         searchEmptyCallback = false,
         searchFocusCallback = false,
-        searchBlurCallback = false;
+        searchBlurCallback = false,
+        afterSearchCallback = false;
 
     function isFunction(value) {
         return typeof value === 'function';
@@ -98,6 +100,7 @@
             searchEmptyCallback = isFunction( this.settings.onSearchEmpty );
             searchFocusCallback = isFunction( this.settings.onSearchFocus );
             searchBlurCallback = isFunction( this.settings.onSearchBlur );
+            afterSearchCallback = isFunction( this.settings.onAfterSearch );
         },
 
         bindEvents: function() {
@@ -107,6 +110,10 @@
                 that.search( $( this ).val() );
 
                 that.updateStriping();
+
+                if ( afterSearchCallback ) {
+                  that.settings.onAfterSearch();
+                }
             });
 
             if ( searchFocusCallback ) {
