@@ -9,7 +9,8 @@ var gulp = require('gulp'),
   cleanCss = require('gulp-clean-css'),
   flatmap = require('gulp-flatmap'),
   htmlmin = require('gulp-htmlmin'),
-  gutil = require('gulp-util');
+  gutil = require('gulp-util'),
+  ftp = require( 'vinyl-ftp' );
 
 // for handlebars
 var handlebars = require('gulp-handlebars'),
@@ -18,6 +19,8 @@ var handlebars = require('gulp-handlebars'),
     concat = require('gulp-concat'),
     path = require('path');
 
+//---------------------------------------------------------------------------------------------------------------------
+// Handlebars
 gulp.task('partials-to-js', function() {
   // Assume all partials start with an underscore
   gulp.src(['./templates/*partial*.hbs'])
@@ -54,6 +57,63 @@ gulp.task('hbs:watch', function () {
   gulp.watch('./templates/*.hbs', ['templates-to-js', 'partials-to-js']);
 });
 
+//---------------------------------------------------------------------------------------------------------------------
+// FTP
+// helper function to build an FTP connection based on our configuration
+function getFtpConnection() {
+  // TODO: this is not working yet
+  var user = ''; //process.env.FTP_USER;
+  var password = ''; //process.env.FTP_PWD;
+  var host = ''; //process.env.FTP_HOST;
+  var port = 21;
+
+  return ftp.create({
+    host: host,
+    port: port,
+    user: user,
+    password: password,
+    parallel: 5,
+    log: gutil.log
+  });
+}
+
+gulp.task('ftp-clean', function () {
+  var remoteGlobs = [
+    './css/*',
+    './js/*',
+    './webfonts/*',
+    './index.html'
+  ];
+  var localFilesGlob = './dist/**/*';
+  var conn = getFtpConnection();
+  // base is the remote base folder
+  return conn.clean( remoteGlobs, localFilesGlob, { base: '.' } );
+});
+
+gulp.task('ftp-copy', function() {
+  var conn = getFtpConnection();
+
+  var localFilesGlob = ['./dist/**/*']; // files to copy
+  var remoteFolder = '/'; // where to copy them to
+
+  // base is the local base folder
+  return gulp.src(localFilesGlob, { base: './dist/', buffer: false })
+    .pipe( conn.dest( remoteFolder ) )
+  ;
+});
+
+/**
+ * Deploy task.
+ * Deletes files from the server and copies everything from dist to the server
+ *
+ * Usage: `FTP_USER=someuser FTP_PWD=somepwd gulp ftp-deploy`
+ */
+gulp.task('ftp-deploy', ['ftp-clean'], function() {
+  gulp.start('ftp-copy');
+});
+
+//---------------------------------------------------------------------------------------------------------------------
+// Live server
 gulp.task('browser-sync', function () {
   var files = [
     './*.html',
@@ -76,6 +136,8 @@ gulp.task('default', ['browser-sync'], function() {
   gulp.start('hbs:watch');
 });
 
+//---------------------------------------------------------------------------------------------------------------------
+// BUILD
 // Clean
 gulp.task('clean', function() {
   return del(['dist']);

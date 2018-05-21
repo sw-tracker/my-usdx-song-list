@@ -57,10 +57,13 @@ This is what I installed when developing this project:
 ```
 cd src/web/
 npm install -g gulp-cli@2.0.1
-npm install gulp@3.9.1 --save-dev
-npm install browser-sync@2.23.6 --save-dev
-npm install del@3.0.0 --save-dev
-npm install gulp-uglify@3.0.0 gulp-usemin@0.3.29 gulp-rev@8.1.1 gulp-clean-css@3.9.3 gulp-flatmap@1.0.2 gulp-htmlmin@4.0.0 --save-dev
+npm install --save-dev gulp@3.9.1
+npm install --save-dev browser-sync@2.23.6
+npm install --save-dev del@3.0.0
+npm install --save-dev gulp-uglify@3.0.0 gulp-usemin@0.3.29 gulp-rev@8.1.1 gulp-clean-css@3.9.3 gulp-flatmap@1.0.2 gulp-htmlmin@4.0.0
+npm install --save handlebars@^4.0.0
+npm install --save-dev gulp-handlebars gulp-wrap gulp-declare gulp-concat
+npm install --save-dev gulp-util vinyl-ftp
 ```
 
 To build the project run:
@@ -83,8 +86,14 @@ gulp
 - To have a template file compiled as a partial, the file must be named `*partial*.hbs`.
 - To reuse a template as a partial, the file name must have both words in it.
 
+### FTP Deploy
+
+To deploy the files to a server, run the following command.
+Make sure you have set the correct host, username and password.
+Also, make sure that the username you use has only access to the direct folder where you want these files,
+because this command will delete everything under `./` from this user.
+
 ```
 cd src/web/
-npm install --save handlebars@^4.0.0
-npm install --save-dev gulp-handlebars gulp-wrap gulp-declare gulp-concat
+gulp ftp-deploy
 ```
