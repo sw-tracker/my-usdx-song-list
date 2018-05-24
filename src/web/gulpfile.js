@@ -116,6 +116,14 @@ var doFtp = function(options, resp) {
   );
 };
 
+var validateInput = function(input) {
+  if (input.length == 0) {
+    console.log('invalid input!');
+    return false;
+  }
+  return true;
+}
+
 var getCredentials = function() {
   if (host.length == 0) {
     gulp.src('./package.json')
@@ -124,17 +132,20 @@ var getCredentials = function() {
           {
             type: 'input',
             name: 'host',
-            message: 'FTP Host: '
+            message: 'FTP Host: ',
+            validate : validateInput
           },
           {
             type: 'input',
             name: 'username',
-            message: 'Username: '
+            message: 'Username: ',
+            validate : validateInput
           },
           {
             type: 'password',
             name: 'pass',
-            message: 'Password: '
+            message: 'Password: ',
+            validate : validateInput
           }]
         , function (res) {
           host = res.host;
