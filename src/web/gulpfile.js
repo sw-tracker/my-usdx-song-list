@@ -10,7 +10,9 @@ var gulp = require('gulp'),
   flatmap = require('gulp-flatmap'),
   htmlmin = require('gulp-htmlmin'),
   gutil = require('gulp-util'),
-  ftp = require( 'vinyl-ftp' );
+  ftp = require( 'vinyl-ftp' ),
+  prompt = require('gulp-prompt'),
+  runSequence = require('run-sequence');
 
 // for handlebars
 var handlebars = require('gulp-handlebars'),
@@ -18,6 +20,13 @@ var handlebars = require('gulp-handlebars'),
     declare = require('gulp-declare'),
     concat = require('gulp-concat'),
     path = require('path');
+
+//---------------------------------------------------------------------------------------------------------------------
+// the user will be prompted
+var user = '';
+var password = '';
+var host = '';
+var port = 21;
 
 //---------------------------------------------------------------------------------------------------------------------
 // Handlebars
@@ -61,12 +70,7 @@ gulp.task('hbs:watch', function () {
 // FTP
 // helper function to build an FTP connection based on our configuration
 function getFtpConnection() {
-  // TODO: this is not working yet
-  var user = ''; //process.env.FTP_USER;
-  var password = ''; //process.env.FTP_PWD;
-  var host = ''; //process.env.FTP_HOST;
-  var port = 21;
-
+  console.log('getFtpConnection');
   return ftp.create({
     host: host,
     port: port,
@@ -78,6 +82,7 @@ function getFtpConnection() {
 }
 
 gulp.task('ftp-clean', function () {
+  console.log('FTP-CLEAN');
   var remoteGlobs = [
     './css/*',
     './js/*',
@@ -91,6 +96,7 @@ gulp.task('ftp-clean', function () {
 });
 
 gulp.task('ftp-copy', function() {
+  console.log('FTP-COPY');
   var conn = getFtpConnection();
 
   var localFilesGlob = ['./dist/**/*']; // files to copy
@@ -102,14 +108,55 @@ gulp.task('ftp-copy', function() {
   ;
 });
 
+var doFtp = function(options, resp) {
+  console.log('doFtp');
+  runSequence(
+    'ftp-clean',
+    'ftp-copy'
+  );
+};
+
+var getCredentials = function() {
+  if (host.length == 0) {
+    gulp.src('./package.json')
+      .pipe(prompt.prompt(
+        [
+          {
+            type: 'input',
+            name: 'host',
+            message: 'FTP Host: '
+          },
+          {
+            type: 'input',
+            name: 'username',
+            message: 'Username: '
+          },
+          {
+            type: 'password',
+            name: 'pass',
+            message: 'Password: '
+          }]
+        , function (res) {
+          host = res.host;
+          user = res.username;
+          password = res.pass;
+          // here we call the function that does the heavy lifting
+          doFtp();
+        }));
+  }
+}
+
 /**
  * Deploy task.
- * Deletes files from the server and copies everything from dist to the server
- *
- * Usage: `FTP_USER=someuser FTP_PWD=somepwd gulp ftp-deploy`
+ * - Ask user for credentials
+ * - Delete files from the server
+ * - Copy everything from dist to the server
  */
-gulp.task('ftp-deploy', ['ftp-clean'], function() {
-  gulp.start('ftp-copy');
+gulp.task('ftp-deploy', function() {
+  // set the command window title to contain the folder of the project
+  // this way I can automatically fill in the credentials using KeyPass
+  process.title += ' ' + process.cwd();
+  getCredentials();
 });
 
 //---------------------------------------------------------------------------------------------------------------------

@@ -19,8 +19,10 @@
     "gulp-concat": "^2.6.1",
     "gulp-declare": "^0.3.0",
     "gulp-handlebars": "^5.0.2",
+    "gulp-prompt": "^1.0.1",
     "gulp-util": "^3.0.8",
     "gulp-wrap": "^0.13.0",
+    "run-sequence": "^2.2.1",
     "vinyl-ftp": "^0.6.1"
   },
   "scripts": {

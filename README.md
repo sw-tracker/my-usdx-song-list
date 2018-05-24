@@ -64,6 +64,8 @@ npm install --save-dev gulp-uglify@3.0.0 gulp-usemin@0.3.29 gulp-rev@8.1.1 gulp-
 npm install --save handlebars@^4.0.0
 npm install --save-dev gulp-handlebars gulp-wrap gulp-declare gulp-concat
 npm install --save-dev gulp-util vinyl-ftp
+npm install --save-dev gulp-prompt
+npm install --save-dev run-sequence
 ```
 
 To build the project run:
@@ -89,7 +91,9 @@ gulp
 ### FTP Deploy
 
 To deploy the files to a server, run the following command.
-Make sure you have set the correct host, username and password.
+It will prompt you for the host, username and password. I recommend using KeyPass to automatically fill in these fields.
+The command window will be renamed to `gulp ftp-deploy <pwd>`, you can use this in KeyPass.
+
 Also, make sure that the username you use has only access to the direct folder where you want these files,
 because this command will delete everything under `./` from this user.
 
