@@ -22,7 +22,7 @@ var handlebars = require('gulp-handlebars'),
     path = require('path');
 
 //---------------------------------------------------------------------------------------------------------------------
-// the user will be prompted
+// FTP credentials: the user will be prompted
 var user = '';
 var password = '';
 var host = '';
