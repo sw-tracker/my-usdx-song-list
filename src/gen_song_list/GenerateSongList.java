@@ -13,8 +13,8 @@ import java.nio.file.Paths;
 public class GenerateSongList {
 
   public static String[] SONGS_FOLDERS = {
-    "C:\\Users\\OlgaLucia\\Documents\\UltraStar\\Songs",
-    "C:\\Users\\OlgaLucia\\Documents\\UltraStar\\Videos"
+    "M:\\UltraStar\\Songs",
+    "M:\\UltraStar\\Videos"
   };
   private static String JS_OUTPUT_PATH = "src/web/resources/song_data.js";
 
