@@ -35,7 +35,7 @@ this["usdxSongList"]["templates"]["songs-template"] = Handlebars.template({"1":f
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=container.escapeExpression;
 
-  return "<!-- this template displays a list of matches.\r\nusage: > songs-template\r\n-->\r\n<div class=\"container\">\r\n\r\n  <div class=\"row\">\r\n    <div class=\"col-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-end\">\r\n      <p><span id=\"shown_songs\">"
+  return "<!-- this template displays a list of matches.\r\nusage: > songs-template\r\n-->\r\n<div class=\"container\">\r\n\r\n  <div class=\"row\">\r\n    <!--<div class=\"col-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center\">\r\n        <span class=\"fa fa-spinner\"></span>\r\n    </div>-->\r\n    <div class=\"col-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-end\">\r\n      <p><span id=\"shown_songs\">"
     + alias3(((helper = (helper = helpers.shown_songs || (depth0 != null ? depth0.shown_songs : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"shown_songs","hash":{},"data":data}) : helper)))
     + "</span> of "
     + alias3(((helper = (helper = helpers.total_songs || (depth0 != null ? depth0.total_songs : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"total_songs","hash":{},"data":data}) : helper)))
