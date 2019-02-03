@@ -24,7 +24,8 @@
             onSearchBlur: false,
             clearOnLoad: false,
             onAfterSearch: false,
-            ignoreDiacritics: false
+            ignoreDiacritics: false,
+            debounceMs: 0
         },
         searchActiveCallback = false,
         searchEmptyCallback = false,
@@ -125,10 +126,26 @@
           return text;
         },
 
+        //http://davidwalsh.name/javascript-debounce-function
+        debounce: function(func, wait, immediate) {
+            var timeout;
+            return function() {
+                var context = this, args = arguments;
+                var later = function() {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                var callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        },
+
         bindEvents: function() {
             var that = this;
 
-            this.$search.on( 'change keyup', function() {
+            this.$search.on( 'change keyup', that.debounce(function() {
                 that.search( $( this ).val() );
 
                 that.updateStriping();
@@ -136,7 +153,7 @@
                 if ( afterSearchCallback ) {
                   that.settings.onAfterSearch();
                 }
-            });
+            }, this.settings.debounceMs));
 
             if ( searchFocusCallback ) {
                 this.$search.on( 'focus', this.settings.onSearchFocus );
